@@ -8,6 +8,7 @@
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/framer-motion@11/dist/framer-motion.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap');
     
@@ -85,6 +86,7 @@
   
   <script type="text/babel" data-type="module">
     const { useState, useMemo } = React;
+    const { motion } = Motion;
     
     const BTHS = {
       blue: "#1D4ED8",
@@ -127,7 +129,13 @@
       };
       
       return (
-        <div className={`relative rounded-2xl border-[4px] border-black p-5 shadow-[10px_10px_0_0_rgba(0,0,0,1)] ${tones[tone] || tones.blue}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 18, rotate: -0.5 }}
+          whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ type: "spring", stiffness: 160, damping: 18 }}
+          className={`relative rounded-2xl border-[4px] border-black p-5 shadow-[10px_10px_0_0_rgba(0,0,0,1)] ${tones[tone] || tones.blue}`}
+        >
           <div className="absolute -right-2 -top-2 rotate-2 rounded-xl border-[3px] border-black bg-white px-3 py-1 text-xs font-black shadow-[5px_5px_0_0_rgba(0,0,0,1)]">
             PRACTICAL
           </div>
@@ -140,7 +148,7 @@
             <h3 className="mt-2 text-xl font-black tracking-tight text-black">{title}</h3>
           </div>
           <div className="mt-3 text-sm font-semibold text-black/90">{children}</div>
-        </div>
+        </motion.div>
       );
     };
     
@@ -168,7 +176,13 @@
     
     function CourseRow({ course, skills, realWorld, tone }) {
       return (
-        <div className="grid gap-4 rounded-2xl border-[4px] border-black bg-white p-5 shadow-[10px_10px_0_0_rgba(0,0,0,1)] lg:grid-cols-12">
+        <motion.div
+          initial={{ opacity: 0, x: -18 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ type: "spring", stiffness: 160, damping: 18 }}
+          className="grid gap-4 rounded-2xl border-[4px] border-black bg-white p-5 shadow-[10px_10px_0_0_rgba(0,0,0,1)] lg:grid-cols-12"
+        >
           <div className="lg:col-span-4">
             <div className="flex flex-wrap gap-2">
               <Badge>{tone}</Badge>
@@ -188,7 +202,7 @@
             <div className="text-xs font-black">Real world application</div>
             <p className="mt-2 text-sm font-semibold text-black/85">{realWorld}</p>
           </div>
-        </div>
+        </motion.div>
       );
     }
     
@@ -353,7 +367,12 @@
           {/* Hero Section - Continued in next message due to length */}
           <header id="top" className="hero-bg relative overflow-hidden">
             <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
-              <div className="grid items-center gap-10 lg:grid-cols-12">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 150, damping: 16 }}
+                className="grid items-center gap-10 lg:grid-cols-12"
+              >
                 <div className="lg:col-span-7">
                   <div className="flex flex-wrap items-center gap-2">
                     <Badge>BLUE · BLACK · SILVER</Badge>
@@ -398,7 +417,13 @@
                 </div>
                 
                 <div className="lg:col-span-5">
-                  <div className="relative rounded-[28px] border-[5px] border-black bg-[var(--bths-black)] p-6 shadow-[14px_14px_0_0_rgba(0,0,0,1)]">
+                  <motion.div
+                    initial={{ opacity: 0, y: 18, rotate: 1 }}
+                    whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ type: "spring", stiffness: 160, damping: 18 }}
+                    className="relative rounded-[28px] border-[5px] border-black bg-[var(--bths-black)] p-6 shadow-[14px_14px_0_0_rgba(0,0,0,1)]"
+                  >
                     <div className="mono text-xs font-bold text-white/90">LIVE DASHBOARD</div>
                     <div className="mt-2 text-2xl font-black text-white">What you get</div>
                     
@@ -423,9 +448,9 @@
                     </div>
                     
                     <div className="pointer-events-none absolute -bottom-8 -right-8 h-28 w-28 rotate-12 rounded-[28px] border-[5px] border-black bg-[var(--bths-silver)] shadow-[12px_12px_0_0_rgba(0,0,0,1)]" />
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </header>
           
